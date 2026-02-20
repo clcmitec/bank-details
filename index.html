@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MITEC — Application Form</title>
+
+  <style>
+    :root{
+      --bg:#f4f6f9;
+      --card:#ffffff;
+      --text:#101828;
+      --muted:#55606a;
+      --line:#d9e1ea;
+      --brand:#224289;
+      --brand2:#D4AF37;
+      --danger:#b42318;
+      --ok:#027a48;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      max-width:860px;
+      margin:24px auto;
+      padding:0 14px 34px;
+    }
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+    .brand{ display:flex; gap:10px; align-items:center; }
+
+    /* ✅ REAL MITEC LOGO */
+    .mitecLogo{
+      height:38px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      background:#fff;
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      box-shadow:0 10px 20px rgba(0,0,0,.06);
+    }
+    @media (max-width:720px){
+      .mitecLogo{ height:34px; padding:6px 8px; }
+    }
+
+    .brand h1{ font-size:16px; margin:0; line-height:1.2; }
+    .brand p{ margin:0; font-size:12px; color:var(--muted) }
+    .chip{
+      font-size:12px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:0 10px 26px rgba(0,0,0,.07);
+      overflow:hidden;
+    }
+    .header{
+      padding:18px 18px 14px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#ffffff, #fbfcfe);
+    }
+    .header h2{ margin:0; font-size:18px; color:var(--brand) }
+    .header .sub{
+      margin-top:6px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    .progressWrap{ padding:12px 18px 0; }
+    .progressLine{
+      height:8px;
+      border-radius:999px;
+      background:#e9eef6;
+      overflow:hidden;
+    }
+    .progressLine > div{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--brand), #355cd6);
+      border-radius:999px;
+      transition:width .25s ease;
+    }
+    .stepsMeta{
+      display:flex;
+      justify-content:space-between;
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    form{ padding:18px }
+    .sectionTitle{
+      font-size:14px;
+      font-weight:750;
+      margin:6px 0 2px;
+      letter-spacing:.2px;
+    }
+    .sectionDesc{
+      font-size:12px;
+      color:var(--muted);
+      margin:0 0 14px;
+      line-height:1.45;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width:720px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin:10px 0 6px;
+    }
+    .req::after{ content:" *"; color:var(--danger); font-weight:900; }
+
+    input, select, textarea{
+      width:100%;
+      border:1px solid #cfd6df;
+      border-radius:12px;
+      padding:11px 12px;
+      font-size:14px;
+      background:#fff;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    textarea{ min-height:110px; resize:vertical; }
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(34,66,137,.8);
+      box-shadow:0 0 0 4px rgba(34,66,137,.12);
+    }
+
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.4;
+    }
+    .radioRow, .checkRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      padding:10px 12px;
+      border:1px solid #cfd6df;
+      border-radius:12px;
+      background:#fff;
+    }
+    .radioItem, .checkItem{
+      display:flex; align-items:center; gap:8px;
+      font-size:13px; color:var(--text);
+    }
+    .radioItem input, .checkItem input{
+      width:auto;
+      transform:scale(1.05);
+    }
+
+    .fileBox{
+      border:1px dashed #b9c6d8;
+      border-radius:12px;
+      padding:12px;
+      background:#fbfdff;
+    }
+    .fileBox input{ border:none; padding:0; box-shadow:none }
+    .fileMeta{ margin-top:8px; font-size:12px; color:var(--muted); }
+    .fileList{ margin:6px 0 0; padding-left:16px; color:var(--muted); font-size:12px }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:800;
+      cursor:pointer;
+      font-size:14px;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .btnSecondary{ background:#eef2f7; color:#2b3640; }
+    .btnPrimary{
+      background:var(--brand);
+      color:#fff;
+      box-shadow:0 10px 18px rgba(34,66,137,.18);
+    }
+    .btnPrimary:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    .alert{
+      margin:12px 0 0;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(180,35,24,.25);
+      background:rgba(180,35,24,.06);
+      color:#7a271a;
+      font-size:13px;
+      display:none;
+      line-height:1.45;
+    }
+    .ok{
+      border:1px solid rgba(2,122,72,.25);
+      background:rgba(2,122,72,.06);
+      color:#03543f;
+    }
+
+    .step{ display:none; }
+    .step.active{ display:block; }
+
+    .miniNote{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:10px;
+      line-height:1.5;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:12px;
+      color:var(--muted);
+      margin-left:8px;
+      font-weight:700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img
+          class="mitecLogo"
+          src="https://mitec.com.my/static/img/logos/mitec-new-logo.png"
+          alt="MITEC"
+          loading="lazy"
+        />
+        <div>
+          <h1>MITEC — Application Form</h1>
+          <p>Casual Labour of MITEC</p>
+        </div>
+      </div>
+      <div class="chip" id="chipStep">Section 1 of 6</div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <h2 id="stepHeading">Application Form</h2>
+        <div class="sub" id="stepSub">
+          Please complete all required fields. Incomplete submissions will be treated as “nice try”.
+        </div>
+      </div>
+
+      <div class="progressWrap">
+        <div class="progressLine"><div id="bar"></div></div>
+        <div class="stepsMeta">
+          <div id="metaLeft">Progress</div>
+          <div id="metaRight">0%</div>
+        </div>
+      </div>
+
+      <form id="appForm" novalidate>
+        <!-- STEP 1 -->
+        <section class="step active" data-title="Application Form" data-sub="By proceeding, you acknowledge and agree with the statements below.">
+          <div class="sectionTitle">Privacy & Confidentiality</div>
+          <p class="sectionDesc">By proceeding with this form, you acknowledge and agree that:</p>
+
+          <div class="fileBox" style="border-style:solid">
+            <p class="sectionDesc" style="margin:0">
+              <b>All submitted information is Private & Confidential (P&C)</b>, accessible only to authorized personnel for attendance, coordination, and administrative purposes under MITEC.
+              <br><br>
+              Your data may be stored and processed using Google Workspace services (e.g., Google Sheets/Drive) in line with Google’s security and privacy standards.
+              <br><br>
+              You confirm that all information provided is accurate and you consent to its use for legitimate purposes related to casual employment at MITEC.
+              <br><br>
+              Any misuse, unauthorized access, or data tampering may result in access restriction, disciplinary action, or legal consequences.
+            </p>
+          </div>
+
+          <label class="req">Proceed</label>
+          <div class="checkRow" role="group" aria-label="Proceed Agreement">
+            <label class="checkItem">
+              <input type="checkbox" id="agreeProceed" required>
+              I understand and agree to proceed.
+            </label>
+          </div>
+
+          <div class="miniNote">
+            Tip: If you’re submitting “just to test”, please don’t. That’s how your name becomes a legend in the wrong way.
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" data-title="Maklumat Pemohon" data-sub="Please fill in applicant details. All items marked * are required.">
+          <div class="grid">
+            <div>
+              <label class="req">NAME As Per MyKAD</label>
+              <input type="text" name="name_mykad" id="nameMykad" required placeholder="e.g., AHMAD BIN ALI" style="text-transform:uppercase">
+              <div class="hint">Name will be saved in CAPITAL LETTERS.</div>
+            </div>
+
+            <div>
+              <label class="req">Phone Number</label>
+              <input type="tel" name="phone" id="phoneNumber" required inputmode="numeric" autocomplete="tel"
+                     maxlength="12" pattern="^601[0-9]{8,9}$" placeholder="e.g., 60123456789">
+              <div class="hint">Malaysia only. Must start with 601. Digits only (no +, no dash).</div>
+            </div>
+          </div>
+
+          <!-- Document Type -->
+          <label class="req">Document Type <span class="badge" id="docBadge">MyKAD</span></label>
+          <div class="radioRow" role="radiogroup" aria-label="Document Type">
+            <label class="radioItem"><input type="radio" name="doc_type" value="MYKAD" required checked> MyKAD</label>
+            <label class="radioItem"><input type="radio" name="doc_type" value="PASSPORT" required> Passport</label>
+          </div>
+          <div class="hint">Choose correctly. The system will validate based on your selection.</div>
+
+          <!-- MyKAD/Passport Number -->
+          <label class="req">MyKAD/Passport Number</label>
+          <input type="text" name="mykad_passport_no" id="docNumber" required autocomplete="off"
+                 inputmode="numeric" placeholder="MyKAD: 12 digits (e.g., 010203145678)" />
+          <div class="hint" id="docHint">MyKAD must be 12 digits with no dash. Example: 010203145678.</div>
+
+          <!-- Upload -->
+          <label class="req">MyKAD/Passport Copy</label>
+          <div class="fileBox">
+            <input type="file" name="ic_copy" id="icCopy" required accept="image/*,.pdf">
+            <div class="fileMeta">Accepted: image/PDF. Keep it readable. Blurry uploads = instant regret.</div>
+            <ul class="fileList" id="icList"></ul>
+          </div>
+
+          <label class="req">ALAMAT</label>
+          <textarea name="alamat" required placeholder="Sila berikan alamat semasa. Nyatakan alamat kolej jika tinggal di kolej/universiti."></textarea>
+
+          <div class="grid">
+            <div>
+              <label class="req">GENDER</label>
+              <div class="radioRow" role="radiogroup" aria-label="Gender">
+                <label class="radioItem"><input type="radio" name="gender" value="MALE" required> MALE</label>
+                <label class="radioItem"><input type="radio" name="gender" value="FEMALE" required> FEMALE</label>
+                <label class="radioItem"><input type="radio" name="gender" value="PREFER_NOT_TO_SAY" required> PREFER NOT TO SAY</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="req">STATUS PERKAHWINAN</label>
+              <div class="radioRow" role="radiogroup" aria-label="Marital Status">
+                <label class="radioItem"><input type="radio" name="status_perkahwinan" value="BUJANG" required> BUJANG</label>
+                <label class="radioItem"><input type="radio" name="status_perkahwinan" value="BERKAHWIN" required> BERKAHWIN</label>
+                <label class="radioItem"><input type="radio" name="status_perkahwinan" value="LAIN-LAIN" required> LAIN-LAIN</label>
+              </div>
+            </div>
+          </div>
+
+          <label class="req">GAMBAR (Passport-size)</label>
+          <div class="fileBox">
+            <input type="file" name="gambar" id="gambar" required accept="image/*">
+            <div class="fileMeta">Upload a clear passport-style photo. Not your “filter era”.</div>
+            <ul class="fileList" id="gambarList"></ul>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" data-title="Kecemasan" data-sub="Emergency contact details (required).">
+          <div class="grid">
+            <div>
+              <label class="req">NAMA WARIS</label>
+              <input type="text" name="nama_waris" id="namaWaris" required placeholder="e.g., SITI BINTI ALI" style="text-transform:uppercase">
+            </div>
+            <div>
+              <label class="req">HUBUNGAN</label>
+              <input type="text" name="hubungan" id="hubungan" required placeholder="e.g., IBU / BAPA / SUAMI / ISTERI / ADIK" style="text-transform:uppercase">
+            </div>
+          </div>
+
+          <label class="req">EMERGENCY Contact No</label>
+          <input type="tel" name="emergency_no" id="emergencyNumber" required inputmode="numeric" autocomplete="tel"
+                 maxlength="12" pattern="^601[0-9]{8,9}$" placeholder="e.g., 60123456789">
+          <div class="hint">Must start with 601. Digits only (no +, no dash).</div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" data-title="Latar Belakang" data-sub="Background information (required).">
+          <label class="req">KEBOLEHAN / BAKAT / PENGALAMAN</label>
+          <textarea name="kebolehan" required placeholder="Sila nyatakan kebolehan/bakat/pengalaman anda."></textarea>
+
+          <div class="grid">
+            <div>
+              <label class="req">SIJIL / SUNTIKAN TYPHOID</label>
+              <div class="radioRow" role="radiogroup" aria-label="Typhoid">
+                <label class="radioItem"><input type="radio" name="typhoid" value="ADA" required> ADA</label>
+                <label class="radioItem"><input type="radio" name="typhoid" value="TIADA" required> TIADA</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="req">Transportation</label>
+              <div class="radioRow" role="radiogroup" aria-label="Transport">
+                <label class="radioItem"><input type="radio" name="transportation" value="ADA" required> ADA</label>
+                <label class="radioItem"><input type="radio" name="transportation" value="TIADA" required> TIADA</label>
+              </div>
+            </div>
+          </div>
+
+          <label class="req">Sejarah Kesihatan / Kemalangan</label>
+          <div class="radioRow" role="radiogroup" aria-label="Health History">
+            <label class="radioItem"><input type="radio" name="sejarah" value="TIADA" required> TIADA</label>
+            <label class="radioItem"><input type="radio" name="sejarah" value="OTHER" required> Other</label>
+          </div>
+
+          <div id="sejarahOtherWrap" style="display:none;margin-top:10px">
+            <label class="req">If Other, please specify</label>
+            <input type="text" name="sejarah_other" id="sejarahOther" placeholder="Describe briefly (no essay).">
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step" data-title="Banking Details" data-sub="Banking info for payments. Make sure it’s correct.">
+          <label class="req">Bank</label>
+          <select name="bank" required>
+            <option value="">Select Bank</option>
+            <option>AFFIN BANK BERHAD</option>
+            <option>AGROBANK</option>
+            <option>ALLIANCE BANK MALAYSIA BERHAD</option>
+            <option>AL-RAJHI</option>
+            <option>AMBANK MALAYSIA BERHAD</option>
+            <option>BANK ISLAM MALAYSIA BERHAD</option>
+            <option>BANK KERJASAMA RAKYAT MALAYSIA BERHAD</option>
+            <option>BANK MUAMALAT MALAYSIA BHD</option>
+            <option>BANK OF AMERICA (M) BERHAD</option>
+            <option>BANK OF CHINA (M) BERHAD</option>
+            <option>BANK SIMPANAN NASIONAL BERHAD</option>
+            <option>MUFG BANK (MALAYSIA) BERHAD</option>
+            <option>CIMB BANK BERHAD</option>
+            <option>CITIBANK BERHAD</option>
+            <option>DEUTSCHE BANK (MALAYSIA) BERHAD</option>
+            <option>HONG LEONG BANK BERHAD</option>
+            <option>HSBC BANK MALAYSIA BERHAD</option>
+            <option>INDUSTRIAL AND COMMERCIAL BANK OF CHINA (M) BERHAD</option>
+            <option>JP MORGAN CHASE BANK BERHAD</option>
+            <option>KUWAIT FINANCE HOUSE</option>
+            <option>MAYBANK BERHAD</option>
+            <option>MBSB BANK BERHAD</option>
+            <option>MIZUHO BANK (MALAYSIA) BERHAD</option>
+            <option>OCBC BANK BERHAD</option>
+            <option>PUBLIC BANK BERHAD</option>
+            <option>RHB BANK BERHAD</option>
+            <option>STANDARD CHARTERED BANK MALAYSIA BERHAD</option>
+            <option>SUMITOMO MITSUI BANKING CORPORATION (M) BERHAD</option>
+            <option>UNITED OVERSEAS BANK BERHAD (UOB)</option>
+            <option>TnGo E Wallet</option>
+          </select>
+
+          <div class="grid">
+            <div>
+              <label class="req">Account Number</label>
+              <input type="text" name="account_no" required placeholder="Numbers only" inputmode="numeric">
+              <div class="hint">Digits only. No spaces, no dash.</div>
+            </div>
+            <div>
+              <label class="req">Account Holder Name</label>
+              <input type="text" name="account_name" id="accountName" required placeholder="As per bank record" style="text-transform:uppercase">
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="step" data-title="Akuan" data-sub="Final declarations before submission.">
+          <div class="sectionTitle">Akuan</div>
+          <p class="sectionDesc">
+            By checking these boxes, you confirm that you have read and understood the contents of the above documents.
+          </p>
+
+          <label class="req">Declarations</label>
+          <div class="checkRow" role="group" aria-label="Declarations">
+            <label class="checkItem">
+              <input type="checkbox" name="akuan_1" required>
+              I acknowledge and agree to the notices, guidelines, references, and all information provided.
+            </label>
+            <label class="checkItem">
+              <input type="checkbox" name="akuan_2" required>
+              I have read and agree to the Disclaimer & Privacy Notice, and I consent to the use of my information for legitimate purposes.
+            </label>
+          </div>
+
+          <div class="miniNote">
+            Submitting means you stand behind your details. If your banking info is wrong, the universe will not fix it for you.
+          </div>
+        </section>
+
+        <div class="alert" id="alertBox"></div>
+
+        <div class="nav">
+          <button type="button" class="btn btnSecondary" id="btnBack">← Back</button>
+          <button type="button" class="btn btnPrimary" id="btnNext">Next →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script>
+  // =========================
+  // CONFIG
+  // =========================
+  const ENDPOINT_URL = "YOUR_APPS_SCRIPT_WEBAPP_URL"; // Replace later
+
+  // =========================
+  // WIZARD STATE
+  // =========================
+  const form = document.getElementById("appForm");
+  const steps = Array.from(document.querySelectorAll(".step"));
+  const btnBack = document.getElementById("btnBack");
+  const btnNext = document.getElementById("btnNext");
+  const bar = document.getElementById("bar");
+  const chipStep = document.getElementById("chipStep");
+  const stepHeading = document.getElementById("stepHeading");
+  const stepSub = document.getElementById("stepSub");
+  const metaRight = document.getElementById("metaRight");
+  const alertBox = document.getElementById("alertBox");
+
+  // Document controls
+  const docBadge = document.getElementById("docBadge");
+  const docNumber = document.getElementById("docNumber");
+  const docHint = document.getElementById("docHint");
+
+  // Capital fields (force uppercase)
+  const uppercaseIds = ["nameMykad","namaWaris","hubungan","accountName"];
+  uppercaseIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("input", () => el.value = el.value.toUpperCase());
+    el.addEventListener("blur", () => el.value = (el.value || "").toUpperCase());
+  });
+
+  // Phone sanitizers (601xxxxxxxxx only)
+  function sanitizePhone(input){
+    let v = (input.value || "").replace(/\D/g,"");
+
+    if (v.startsWith("0")) v = "60" + v.slice(1);
+    if (v.startsWith("6") && !v.startsWith("60")) v = "60" + v.slice(1);
+
+    if (v.startsWith("60") && v.length >= 3 && v[2] !== "1") {
+      v = "601" + v.slice(3);
+    }
+
+    v = v.slice(0, 12);
+    input.value = v;
+  }
+
+  const phoneInputs = [document.getElementById("phoneNumber"), document.getElementById("emergencyNumber")].filter(Boolean);
+  phoneInputs.forEach(inp => {
+    inp.addEventListener("input", () => sanitizePhone(inp));
+    inp.addEventListener("blur", () => sanitizePhone(inp));
+  });
+
+  let current = 0;
+
+  function setAlert(msg, ok=false){
+    alertBox.style.display = msg ? "block" : "none";
+    alertBox.classList.toggle("ok", !!ok);
+    alertBox.textContent = msg || "";
+  }
+
+  function updateUI(){
+    steps.forEach((s,i)=> s.classList.toggle("active", i === current));
+    chipStep.textContent = `Section ${current+1} of ${steps.length}`;
+
+    const active = steps[current];
+    stepHeading.textContent = active.dataset.title || "Form";
+    stepSub.textContent = active.dataset.sub || "";
+
+    btnBack.style.visibility = current === 0 ? "hidden" : "visible";
+    btnNext.textContent = current === steps.length - 1 ? "Submit" : "Next →";
+
+    const pct = Math.round((current) / (steps.length - 1) * 100);
+    bar.style.width = `${pct}%`;
+    metaRight.textContent = `${pct}%`;
+
+    setAlert("");
+  }
+
+  function getStepFields(stepEl){
+    return Array.from(stepEl.querySelectorAll("input, select, textarea"))
+      .filter(el => !el.disabled);
+  }
+
+  function getDocType(){
+    const picked = form.querySelector('input[name="doc_type"]:checked');
+    return picked ? picked.value : "MYKAD";
+  }
+
+  function applyDocTypeRules(){
+    const type = getDocType();
+
+    if (type === "MYKAD") {
+      docBadge.textContent = "MyKAD";
+      docNumber.placeholder = "MyKAD: 12 digits (e.g., 010203145678)";
+      docHint.textContent = "MyKAD must be 12 digits with no dash. Example: 010203145678.";
+
+      docNumber.inputMode = "numeric";
+      docNumber.pattern = "^\\d{12}$";
+      docNumber.maxLength = 12;
+    } else {
+      docBadge.textContent = "Passport";
+      docNumber.placeholder = "Passport: A12345678 (5–20 chars)";
+      docHint.textContent = "Passport number should be alphanumeric, 5–20 characters. Example: A12345678.";
+
+      docNumber.inputMode = "text";
+      docNumber.pattern = "^[A-Za-z0-9]{5,20}$";
+      docNumber.maxLength = 20;
+    }
+  }
+
+  docNumber.addEventListener("input", () => {
+    if (getDocType() === "MYKAD") {
+      docNumber.value = docNumber.value.replace(/\D/g, "").slice(0, 12);
+    }
+  });
+
+  function fileList(inputId, listId){
+    const input = document.getElementById(inputId);
+    const list = document.getElementById(listId);
+    input.addEventListener("change", () => {
+      list.innerHTML = "";
+      if (!input.files || input.files.length === 0) return;
+      for (const f of input.files){
+        const li = document.createElement("li");
+        li.textContent = `${f.name} (${Math.round(f.size/1024)} KB)`;
+        list.appendChild(li);
+      }
+    });
+  }
+  fileList("icCopy","icList");
+  fileList("gambar","gambarList");
+
+  form.addEventListener("change", (e)=>{
+    if (e.target && e.target.name === "sejarah"){
+      if (e.target.value === "OTHER"){
+        document.getElementById("sejarahOtherWrap").style.display = "block";
+        document.getElementById("sejarahOther").required = true;
+      } else {
+        document.getElementById("sejarahOtherWrap").style.display = "none";
+        const x = document.getElementById("sejarahOther");
+        x.required = false;
+        x.value = "";
+      }
+    }
+
+    if (e.target && e.target.name === "doc_type"){
+      applyDocTypeRules();
+      docNumber.value = "";
+    }
+  });
+
+  function validateStep(){
+    const active = steps[current];
+
+    const sejarahOtherWrap = document.getElementById("sejarahOtherWrap");
+    const sejarahOther = document.getElementById("sejarahOther");
+    if (current === 3) {
+      const sejarahVal = (form.querySelector('input[name="sejarah"]:checked') || {}).value;
+      if (sejarahVal === "OTHER") {
+        sejarahOtherWrap.style.display = "block";
+        sejarahOther.required = true;
+      } else {
+        sejarahOtherWrap.style.display = "none";
+        sejarahOther.required = false;
+        sejarahOther.value = "";
+      }
+    }
+
+    if (current === 1) applyDocTypeRules();
+
+    uppercaseIds.forEach(id=>{
+      const el = document.getElementById(id);
+      if (el) el.value = (el.value || "").toUpperCase();
+    });
+    phoneInputs.forEach(inp => sanitizePhone(inp));
+
+    const fields = getStepFields(active);
+
+    for (const el of fields){
+      if (["name_mykad","nama_waris","hubungan","account_name"].includes(el.name)) {
+        if ((el.value || "") !== (el.value || "").toUpperCase()) {
+          setAlert("Name fields must be in CAPITAL LETTERS.");
+          el.focus();
+          return false;
+        }
+      }
+
+      if (["phone","emergency_no"].includes(el.name)) {
+        if (!/^601\d{8,9}$/.test(el.value || "")) {
+          setAlert("Phone number must start with 601 and contain only digits (no +, no dash). Example: 60123456789.");
+          el.focus();
+          return false;
+        }
+      }
+
+      if (el.type === "file"){
+        if (el.required && (!el.files || el.files.length === 0)){
+          setAlert("Please upload the required file before continuing.");
+          el.focus();
+          return false;
+        }
+        continue;
+      }
+
+      if (!el.checkValidity()){
+        if (el.id === "docNumber"){
+          const type = getDocType();
+          setAlert(type === "MYKAD"
+            ? "MyKAD number must be exactly 12 digits (no dash)."
+            : "Passport number must be alphanumeric (5–20 characters)."
+          );
+          el.focus();
+          return false;
+        }
+
+        setAlert(el.validationMessage || "Please complete required fields.");
+        el.focus();
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  async function readFileAsBase64(file){
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function submitAll(){
+    const payload = {};
+    const fd = new FormData(form);
+
+    for (const [k,v] of fd.entries()){
+      if (v instanceof File) continue;
+      payload[k] = v;
+    }
+
+    const ic = document.getElementById("icCopy").files[0];
+    const gm = document.getElementById("gambar").files[0];
+
+    const MAX_MB = 3;
+    const tooBig = f => f && (f.size > MAX_MB * 1024 * 1024);
+
+    if (tooBig(ic) || tooBig(gm)){
+      setAlert(`One of your files is too large. Please keep each upload under ${MAX_MB}MB.`);
+      return;
+    }
+
+    if (ic) payload.ic_copy_base64 = await readFileAsBase64(ic);
+    if (gm) payload.gambar_base64 = await readFileAsBase64(gm);
+    if (ic) payload.ic_copy_filename = ic.name;
+    if (gm) payload.gambar_filename = gm.name;
+
+    btnNext.disabled = true;
+    setAlert("Submitting…", true);
+
+    try{
+      const res = await fetch(ENDPOINT_URL, {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const text = await res.text();
+      if (!res.ok) throw new Error(text || "Server error");
+
+      setAlert("Submitted successfully. Thank you.", true);
+
+      form.reset();
+      document.getElementById("icList").innerHTML = "";
+      document.getElementById("gambarList").innerHTML = "";
+
+      current = 0;
+      applyDocTypeRules();
+      updateUI();
+    }catch(err){
+      setAlert("Submission failed. Please try again, or contact the admin.");
+      console.error(err);
+    }finally{
+      btnNext.disabled = false;
+    }
+  }
+
+  btnBack.addEventListener("click", ()=>{
+    setAlert("");
+    if (current > 0){
+      current--;
+      updateUI();
+    }
+  });
+
+  btnNext.addEventListener("click", async ()=>{
+    setAlert("");
+    if (!validateStep()) return;
+
+    if (current < steps.length - 1){
+      current++;
+      updateUI();
+    } else {
+      await submitAll();
+    }
+  });
+
+  applyDocTypeRules();
+  updateUI();
+</script>
+</body>
+</html>
