@@ -597,23 +597,20 @@
   }
 
   function updateUI(){
-    steps.forEach((s,i)=> s.classList.toggle("active", i === current));
-    chipStep.textContent = `Section ${current+1} of ${steps.length}`;
+  steps.forEach((s,i)=> s.classList.toggle("active", i === current));
+  chipStep.textContent = `Section ${current+1} of ${steps.length}`;
 
-    const active = steps[current];
-    stepHeading.textContent = active.dataset.title || "Form";
-    stepSub.textContent = active.dataset.sub || "";
+  const active = steps[current];
+  stepHeading.textContent = active.dataset.title || "Form";
+  stepSub.textContent = active.dataset.sub || "";
 
-    btnBack.style.visibility = current === 0 ? "hidden" : "visible";
-    btnNext.textContent = current === steps.length - 1 ? "Submit" : "Next →";
+  btnBack.style.visibility = current === 0 ? "hidden" : "visible";
+  btnNext.textContent = current === steps.length - 1 ? "Submit" : "Next →";
 
-    const pct = Math.round((current) / (steps.length - 1) * 100);
-    bar.style.width = `${pct}%`;
-    metaRight.textContent = `${pct}%`;
-
-    setAlert("");
-  }
-
+  const pct = Math.round((current) / (steps.length - 1) * 100);
+  bar.style.width = `${pct}%`;
+  metaRight.textContent = `${pct}%`;
+}
   function getStepFields(stepEl){
     return Array.from(stepEl.querySelectorAll("input, select, textarea"))
       .filter(el => !el.disabled);
