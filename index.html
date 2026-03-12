@@ -769,67 +769,61 @@
     });
   }
 
-  async function submitAll(){
-    const payload = {};
-    const fd = new FormData(form);
+  async function submitAll() {
+  const payload = {};
+  const fd = new FormData(form);
 
-    for (const [k,v] of fd.entries()){
-      if (v instanceof File) continue;
-      payload[k] = v;
-    }
-
-    const ic = document.getElementById("icCopy").files[0];
-    const gm = document.getElementById("gambar").files[0];
-
-    const MAX_MB = 3;
-    const tooBig = f => f && (f.size > MAX_MB * 1024 * 1024);
-
-    if (tooBig(ic) || tooBig(gm)){
-      setAlert(`One of your files is too large. Please keep each upload under ${MAX_MB}MB.`);
-      return;
-    }
-
-    if (ic) payload.ic_copy_base64 = await readFileAsBase64(ic);
-    if (gm) payload.gambar_base64 = await readFileAsBase64(gm);
-    if (ic) payload.ic_copy_filename = ic.name;
-    if (gm) payload.gambar_filename = gm.name;
-
-    btnNext.disabled = true;
-    setAlert("Submitting…", true);
-
-    try{
-      await fetch(ENDPOINT_URL, {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "text/plain"
-  },
-  body: JSON.stringify(payload)
-});
-
-setAlert("Submitted successfully.", true);
-    
-
-      const text = await res.text();
-      if (!res.ok) throw new Error(text || "Server error");
-
-      setAlert("Submitted successfully. Thank you.", true);
-
-      form.reset();
-      document.getElementById("icList").innerHTML = "";
-      document.getElementById("gambarList").innerHTML = "";
-
-      current = 0;
-      applyDocTypeRules();
-      updateUI();
-    }catch(err){
-      setAlert("Submission failed. Please try again, or contact the admin.");
-      console.error(err);
-    }finally{
-      btnNext.disabled = false;
-    }
+  for (const [k, v] of fd.entries()) {
+    if (v instanceof File) continue;
+    payload[k] = v;
   }
 
+  const ic = document.getElementById("icCopy").files[0];
+  const gm = document.getElementById("gambar").files[0];
+
+  const MAX_MB = 3;
+  const tooBig = f => f && (f.size > MAX_MB * 1024 * 1024);
+
+  if (tooBig(ic) || tooBig(gm)) {
+    setAlert(`One of your files is too large. Please keep each upload under ${MAX_MB}MB.`);
+    return;
+  }
+
+  if (ic) payload.ic_copy_base64 = await readFileAsBase64(ic);
+  if (gm) payload.gambar_base64 = await readFileAsBase64(gm);
+  if (ic) payload.ic_copy_filename = ic.name;
+  if (gm) payload.gambar_filename = gm.name;
+
+  btnNext.disabled = true;
+  setAlert("Submitting...", true);
+
+  try {
+    await fetch(ENDPOINT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    setAlert("Submitted successfully.", true);
+
+    form.reset();
+    document.getElementById("icList").innerHTML = "";
+    document.getElementById("gambarList").innerHTML = "";
+
+    current = 0;
+    applyDocTypeRules();
+    updateUI();
+
+  } catch (err) {
+    console.error(err);
+    setAlert("Submission failed. Please try again, or contact the admin.");
+  } finally {
+    btnNext.disabled = false;
+  }
+}
   btnBack.addEventListener("click", ()=>{
     setAlert("");
     if (current > 0){
