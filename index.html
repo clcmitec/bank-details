@@ -37,6 +37,552 @@
       justify-content:space-between;
       margin-bottom:12px;
     }
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .mitecLogo{
+      height:38px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      background:#fff;
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      box-shadow:0 10px 20px rgba(0,0,0,.06);
+    }
+    @media (max-width:720px){
+      .mitecLogo{
+        height:34px;
+        padding:6px 8px;
+      }
+    }
+    .brand h1{
+      font-size:16px;
+      margin:0;
+      line-height:1.2;
+    }
+    .brand p{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .chip{
+      font-size:12px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:0 10px 26px rgba(0,0,0,.07);
+      overflow:hidden;
+    }
+    .header{
+      padding:18px 18px 14px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#ffffff, #fbfcfe);
+    }
+    .header h2{
+      margin:0;
+      font-size:18px;
+      color:var(--brand);
+    }
+    .header .sub{
+      margin-top:6px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    .progressWrap{ padding:12px 18px 0; }
+    .progressLine{
+      height:8px;
+      border-radius:999px;
+      background:#e9eef6;
+      overflow:hidden;
+    }
+    .progressLine > div{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--brand), #355cd6);
+      border-radius:999px;
+      transition:width .25s ease;
+    }
+    .stepsMeta{
+      display:flex;
+      justify-content:space-between;
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    form{ padding:18px; }
+    .sectionTitle{
+      font-size:14px;
+      font-weight:750;
+      margin:6px 0 2px;
+      letter-spacing:.2px;
+    }
+    .sectionDesc{
+      font-size:12px;
+      color:var(--muted);
+      margin:0 0 14px;
+      line-height:1.45;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width:720px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin:10px 0 6px;
+    }
+    .req::after{
+      content:" *";
+      color:var(--danger);
+      font-weight:900;
+    }
+
+    input, select, textarea{
+      width:100%;
+      border:1px solid #cfd6df;
+      border-radius:12px;
+      padding:11px 12px;
+      font-size:14px;
+      background:#fff;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(34,66,137,.8);
+      box-shadow:0 0 0 4px rgba(34,66,137,.12);
+    }
+
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.4;
+    }
+    .radioRow, .checkRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      padding:10px 12px;
+      border:1px solid #cfd6df;
+      border-radius:12px;
+      background:#fff;
+    }
+    .radioItem, .checkItem{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      color:var(--text);
+    }
+    .radioItem input, .checkItem input{
+      width:auto;
+      transform:scale(1.05);
+    }
+
+    .fileBox{
+      border:1px dashed #b9c6d8;
+      border-radius:12px;
+      padding:12px;
+      background:#fbfdff;
+    }
+    .fileBox input{
+      border:none;
+      padding:0;
+      box-shadow:none;
+    }
+    .fileMeta{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .fileList{
+      margin:6px 0 0;
+      padding-left:16px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:800;
+      cursor:pointer;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btnSecondary{
+      background:#eef2f7;
+      color:#2b3640;
+    }
+    .btnPrimary{
+      background:var(--brand);
+      color:#fff;
+      box-shadow:0 10px 18px rgba(34,66,137,.18);
+    }
+    .btnPrimary:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    .alert{
+      margin:12px 0 0;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(180,35,24,.25);
+      background:rgba(180,35,24,.06);
+      color:#7a271a;
+      font-size:13px;
+      display:none;
+      line-height:1.45;
+    }
+    .ok{
+      border:1px solid rgba(2,122,72,.25);
+      background:rgba(2,122,72,.06);
+      color:#03543f;
+    }
+
+    .step{ display:none; }
+    .step.active{ display:block; }
+
+    .miniNote{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:10px;
+      line-height:1.5;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:12px;
+      color:var(--muted);
+      margin-left:8px;
+      font-weight:700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img
+          class="mitecLogo"
+          src="https://mitec.com.my/static/img/logos/mitec-new-logo.png"
+          alt="MITEC"
+          loading="lazy"
+        />
+        <div>
+          <h1>MITEC — Application Form</h1>
+          <p>Casual Labour of MITEC</p>
+        </div>
+      </div>
+      <div class="chip" id="chipStep">Section 1 of 6</div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <h2 id="stepHeading">Application Form</h2>
+        <div class="sub" id="stepSub">
+          Please complete all required fields. Incomplete submissions will be treated as “nice try”.
+        </div>
+      </div>
+
+      <div class="progressWrap">
+        <div class="progressLine"><div id="bar"></div></div>
+        <div class="stepsMeta">
+          <div>Progress</div>
+          <div id="metaRight">0%</div>
+        </div>
+      </div>
+
+      <form id="appForm" novalidate>
+        <input type="hidden" name="form_mode" id="formMode" value="create">
+
+        <!-- STEP 1 -->
+        <section class="step active" data-title="Application Form" data-sub="By proceeding, you acknowledge and agree with the statements below.">
+          <div class="sectionTitle">Privacy & Confidentiality</div>
+          <p class="sectionDesc">By proceeding with this form, you acknowledge and agree that:</p>
+
+          <div class="fileBox" style="border-style:solid">
+            <p class="sectionDesc" style="margin:0">
+              <b>All submitted information is Private & Confidential (P&C)</b>, accessible only to authorized personnel for attendance, coordination, and administrative purposes under MITEC.
+              <br><br>
+              Your data may be stored and processed using Google Workspace services (e.g., Google Sheets/Drive) in line with Google’s security and privacy standards.
+              <br><br>
+              You confirm that all information provided is accurate and you consent to its use for legitimate purposes related to casual employment at MITEC.
+              <br><br>
+              Any misuse, unauthorized access, or data tampering may result in access restriction, disciplinary action, or legal consequences.
+            </p>
+          </div>
+
+          <label class="req">Proceed</label>
+          <div class="checkRow" role="group" aria-label="Proceed Agreement">
+            <label class="checkItem">
+              <input type="checkbox" id="agreeProceed" required>
+              I understand and agree to proceed.
+            </label>
+          </div>
+
+          <div class="miniNote">
+            Tip: If you’re submitting just to test, please don’t.
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" data-title="Maklumat Pemohon" data-sub="Please fill in applicant details. All items marked * are required.">
+          <div class="grid">
+            <div>
+              <label class="req">NAME As Per MyKAD</label>
+              <input type="text" name="name_mykad" id="nameMykad" required placeholder="e.g., AHMAD BIN ALI" style="text-transform:uppercase">
+              <div class="hint">Name will be saved in CAPITAL LETTERS.</div>
+            </div>
+
+            <div>
+              <label class="req">Phone Number</label>
+              <input type="tel" name="phone" id="phoneNumber" required inputmode="numeric" autocomplete="tel"
+                     maxlength="12" pattern="^601[0-9]{8,9}$" placeholder="e.g., 60123456789">
+              <div class="hint">Malaysia only. Must start with 601. Digits only, no +, no dash.</div>
+            </div>
+
+            <div>
+              <label class="req">Email Address</label>
+              <input type="email" name="email" id="email" required autocomplete="email"
+                     placeholder="e.g., example@gmail.com">
+              <div class="hint">Use an active email.</div>
+            </div>
+          </div>
+
+          <label class="req">Document Type <span class="badge" id="docBadge">MyKAD</span></label>
+          <div class="radioRow" role="radiogroup" aria-label="Document Type">
+            <label class="radioItem"><input type="radio" name="doc_type" value="MYKAD" required checked> MyKAD</label>
+            <label class="radioItem"><input type="radio" name="doc_type" value="PASSPORT" required> Passport</label>
+          </div>
+          <div class="hint">Choose correctly. The system will validate based on your selection.</div>
+
+          <label class="req">MyKAD/Passport Number</label>
+          <input type="text" name="mykad_passport_no" id="docNumber" required autocomplete="off"
+                 inputmode="numeric" placeholder="MyKAD: 12 digits (e.g., 010203145678)" />
+          <div class="hint" id="docHint">MyKAD must be 12 digits with no dash. Example: 010203145678.</div>
+
+          <label class="req">MyKAD/Passport Copy</label>
+          <div class="fileBox">
+            <input type="file" name="ic_copy" id="icCopy" required accept="image/*,.pdf">
+            <div class="fileMeta">Accepted: image/PDF. Keep it readable.</div>
+            <ul class="fileList" id="icList"></ul>
+          </div>
+
+          <label class="req">ALAMAT</label>
+          <textarea name="alamat" required placeholder="Sila berikan alamat semasa. Nyatakan alamat kolej jika tinggal di kolej/universiti."></textarea>
+
+          <div class="grid">
+            <div>
+              <label class="req">GENDER</label>
+              <div class="radioRow" role="radiogroup" aria-label="Gender">
+                <label class="radioItem"><input type="radio" name="gender" value="MALE" required> MALE</label>
+                <label class="radioItem"><input type="radio" name="gender" value="FEMALE" required> FEMALE</label>
+                <label class="radioItem"><input type="radio" name="gender" value="PREFER_NOT_TO_SAY" required> PREFER NOT TO SAY</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="req">STATUS PERKAHWINAN</label>
+              <div class="radioRow" role="radiogroup" aria-label="Marital Status">
+                <label class="radioItem"><input type="radio" name="status_perkahwinan" value="BUJANG" required> BUJANG</label>
+                <label class="radioItem"><input type="radio" name="status_perkahwinan" value="BERKAHWIN" required> BERKAHWIN</label>
+                <label class="radioItem"><input type="radio" name="status_perkahwinan" value="LAIN-LAIN" required> LAIN-LAIN</label>
+              </div>
+            </div>
+          </div>
+
+          <label class="req">GAMBAR (Passport-size)</label>
+          <div class="fileBox">
+            <input type="file" name="gambar" id="gambar" required accept="image/*">
+            <div class="fileMeta">Upload a clear passport-style photo.</div>
+            <ul class="fileList" id="gambarList"></ul>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" data-title="Kecemasan" data-sub="Emergency contact details (required).">
+          <div class="grid">
+            <div>
+              <label class="req">NAMA WARIS</label>
+              <input type="text" name="nama_waris" id="namaWaris" required placeholder="e.g., SITI BINTI ALI" style="text-transform:uppercase">
+            </div>
+            <div>
+              <label class="req">HUBUNGAN</label>
+              <input type="text" name="hubungan" id="hubungan" required placeholder="e.g., IBU / BAPA / SUAMI / ISTERI / ADIK" style="text-transform:uppercase">
+            </div>
+          </div>
+
+          <label class="req">EMERGENCY Contact No</label>
+          <input type="tel" name="emergency_no" id="emergencyNumber" required inputmode="numeric" autocomplete="tel"
+                 maxlength="12" pattern="^601[0-9]{8,9}$" placeholder="e.g., 60123456789">
+          <div class="hint">Must start with 601. Digits only, no +, no dash.</div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" data-title="Latar Belakang" data-sub="Background information (required).">
+          <label class="req">KEBOLEHAN / BAKAT / PENGALAMAN</label>
+          <textarea name="kebolehan" required placeholder="Sila nyatakan kebolehan/bakat/pengalaman anda."></textarea>
+
+          <div class="grid">
+            <div>
+              <label class="req">SIJIL / SUNTIKAN TYPHOID</label>
+              <div class="radioRow" role="radiogroup" aria-label="Typhoid">
+                <label class="radioItem"><input type="radio" name="typhoid" value="ADA" required> ADA</label>
+                <label class="radioItem"><input type="radio" name="typhoid" value="TIADA" required> TIADA</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="req">Transportation</label>
+              <div class="radioRow" role="radiogroup" aria-label="Transport">
+                <label class="radioItem"><input type="radio" name="transportation" value="ADA" required> ADA</label>
+                <label class="radioItem"><input type="radio" name="transportation" value="TIADA" required> TIADA</label>
+              </div>
+            </div>
+          </div>
+
+          <label class="req">Sejarah Kesihatan / Kemalangan</label>
+          <div class="radioRow" role="radiogroup" aria-label="Health History">
+            <label class="radioItem"><input type="radio" name="sejarah" value="TIADA" required> TIADA</label>
+            <label class="radioItem"><input type="radio" name="sejarah" value="OTHER" required> Other</label>
+          </div>
+
+          <div id="sejarahOtherWrap" style="display:none;margin-top:10px">
+            <label class="req">If Other, please specify</label>
+            <input type="text" name="sejarah_other" id="sejarahOther" placeholder="Describe briefly.">
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step" data-title="Banking Details" data-sub="Banking info for payments. Make sure it’s correct.">
+          <label class="req">Bank</label>
+          <select name="bank" required>
+            <option value="">Select Bank</option>
+            <option>AFFIN BANK BERHAD</option>
+            <option>AGROBANK</option>
+            <option>ALLIANCE BANK MALAYSIA BERHAD</option>
+            <option>AL-RAJHI</option>
+            <option>AMBANK MALAYSIA BERHAD</option>
+            <option>BANK ISLAM MALAYSIA BERHAD</option>
+            <option>BANK KERJASAMA RAKYAT MALAYSIA BERHAD</option>
+            <option>BANK MUAMALAT MALAYSIA BHD</option>
+            <option>BANK OF AMERICA (M) BERHAD</option>
+            <option>BANK OF CHINA (M) BERHAD</option>
+            <option>BANK SIMPANAN NASIONAL BERHAD</option>
+            <option>MUFG BANK (MALAYSIA) BERHAD</option>
+            <option>CIMB BANK BERHAD</option>
+            <option>CITIBANK BERHAD</option>
+            <option>DEUTSCHE BANK (MALAYSIA) BERHAD</option>
+            <option>HONG LEONG BANK BERHAD</option>
+            <option>HSBC BANK MALAYSIA BERHAD</option>
+            <option>INDUSTRIAL AND COMMERCIAL BANK OF CHINA (M) BERHAD</option>
+            <option>JP MORGAN CHASE BANK BERHAD</option>
+            <option>KUWAIT FINANCE HOUSE</option>
+            <option>MAYBANK BERHAD</option>
+            <option>MBSB BANK BERHAD</option>
+            <option>MIZUHO BANK (MALAYSIA) BERHAD</option>
+            <option>OCBC BANK BERHAD</option>
+            <option>PUBLIC BANK BERHAD</option>
+            <option>RHB BANK BERHAD</option>
+            <option>STANDARD CHARTERED BANK MALAYSIA BERHAD</option>
+            <option>SUMITOMO MITSUI BANKING CORPORATION (M) BERHAD</option>
+            <option>UNITED OVERSEAS BANK BERHAD (UOB)</option>
+            <option>TnGo E Wallet</option>
+          </select>
+
+          <div class="grid">
+            <div>
+              <label class="req">Account Number</label>
+              <input type="text" name="account_no" id="accountNo" required placeholder="Numbers only" inputmode="numeric">
+              <div class="hint">Digits only. No spaces, no dash.</div>
+            </div>
+            <div>
+              <label class="req">Account Holder Name</label>
+              <input type="text" name="account_name" id="accountName" required placeholder="As per bank record" style="text-transform:uppercase">
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="step" data-title="Akuan" data-sub="Final declarations before submission.">
+          <div class="sectionTitle">Akuan</div>
+          <p class="sectionDesc">
+            By checking these boxes, you confirm that you have read and understood the contents of the above documents.
+          </p>
+
+          <label class="req">Declarations</label>
+          <div class="checkRow" role="group" aria-label="Declarations">
+            <label class="checkItem">
+              <input type="checkbox" name="akuan_1" required>
+              I acknowledge and agree to the notices, guidelines, references, and all information provided.
+            </label>
+            <label class="checkItem">
+              <input type="checkbox" name="akuan_2" required>
+              I have read and agree to the Disclaimer & Privacy Notice, and I consent to the use of my information for legitimate purposes.
+            </label>
+          </div>
+
+          <div class="miniNote">
+            Submitting means you stand behind your details.
+          </div>
+        </section>
+
+        <div class="alert" id="alertBox"></div>
+
+        <div class="nav">
+          <button type="button" class="btn btnSecondary" id="btnBack">← Back</button>
+          <button type="button" class="btn btnPrimary" id="btnNext">Next →</button>
+        </div>
+      </form>
+    </d      justify-content:space-between;
+      margin-bottom:12px;
+    }
     .brand{ display:flex; gap:10px; align-items:center; }
 
     /* ✅ REAL MITEC LOGO */
