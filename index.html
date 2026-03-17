@@ -405,7 +405,7 @@
 
           <label class="req">MyKAD/Passport Number</label>
           <input type="text" name="mykad_passport_no" id="docNumber" required autocomplete="off"
-                 inputmode="numeric" placeholder="MyKAD: 12 digits (e.g., 010203145678)" />
+                 inputmode="text" placeholder="MyKAD: 12 digits (e.g., 010203145678)" />
           <div class="hint" id="docHint">MyKAD number must be exactly 12 digits, no dash.</div>
 
           <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
@@ -558,7 +558,7 @@
           <div class="grid">
             <div>
               <label class="req">Account Number</label>
-              <input type="text" name="account_no" id="accountNo" required placeholder="Numbers only" inputmode="numeric">
+              <input type="text" name="account_no" id="accountNo" required placeholder="Numbers only" inputmode="text">
               <div class="hint">Account number must contain digits only.</div>
             </div>
             <div>
@@ -747,7 +747,7 @@
         docBadge.textContent = "MyKAD";
         docNumber.placeholder = "MyKAD: 12 digits (e.g., 010203145678)";
         docHint.textContent = "MyKAD number must be exactly 12 digits, no dash.";
-        docNumber.inputMode = "numeric";
+        docNumber.inputMode = "text";
         docNumber.pattern = "^\\d{12}$";
         docNumber.maxLength = 12;
       } else {
